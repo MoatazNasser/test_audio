@@ -15,122 +15,130 @@
             padding: 10px 20px;
             font-size: 18px;
         }
+        #statusRect {
+            width: 30px;
+            height: 30px;
+            background-color: red;
+            margin: 20px auto;
+        }
     </style>
 </head>
 <body>
     <h1>Listen to German Phrases</h1>
     <button id="start">Start Reading</button>
     <button id="stop">Stop Reading</button>
+    
+    <!-- Status Rectangle -->
+    <div id="statusRect"></div>
 
     <script>
         // List of German phrases and examples
-const phrases = [
-    "achten auf",
-    "Ich achte auf meine Gesundheit.",
-    "sich anmelden für",
-    "Ich habe mich für den Kurs angemeldet.",
-    "bitten um",
-    "Er bittet um Hilfe.",
-    "antworten auf",
-    "Ich antworte auf die Frage.",
-    "aufpassen auf",
-    "Sie passt auf die Kinder auf.",
-    "sich ärgern über",
-    "Er ärgert sich über den Lärm.",
-    "sich beschweren über",
-    "Sie beschwert sich über das Essen.",
-    "sich bewerben um",
-    "Er bewirbt sich um die Stelle.",
-    "denken an",
-    "Ich denke an dich.",
-    "diskutieren über",
-    "Wir diskutieren über das Problem.",
-    "sprechen über",
-    "Wir sprechen über das Wetter.",
-    "sich engagieren für",
-    "Sie engagiert sich für den Umweltschutz.",
-    "sich entscheiden für",
-    "Er hat sich für das Studium entschieden.",
-    "sich entschuldigen für",
-    "Ich entschuldige mich für mein Verhalten.",
-    "sich erinnern an",
-    "Ich erinnere mich an den Urlaub.",
-    "sich freuen auf",
-    "Ich freue mich auf das Wochenende.",
-    "sich freuen über",
-    "Ich freue mich über das Geschenk.",
-    "sich interessieren für",
-    "Ich interessiere mich für Kunst.",
-    "sich kümmern um",
-    "Er kümmert sich um seinen Hund.",
-    "nachdenken über",
-    "Ich denke über das Problem nach.",
-    "reden über",
-    "Wir reden über den Film.",
-    "sprechen über",
-    "Wir sprechen über die Arbeit.",
-    "sich streiten über",
-    "Wir streiten uns über Politik.",
-    "sich informieren über",
-    "Ich informiere mich über die Nachrichten.",
-    "lachen über",
-    "Sie lacht über den Witz.",
-    "sich unterhalten über",
-    "Wir unterhalten uns über das Buch.",
-    "sich verlassen auf",
-    "Ich verlasse mich auf dich.",
-    "sich verlieben in",
-    "Er hat sich in sie verliebt.",
-    "sich vorbereiten auf",
-    "Ich bereite mich auf die Prüfung vor.",
-    "warten auf",
-    "Ich warte auf den Bus.",
-    "ausgehen von",
-    "Ich gehe davon aus, dass er kommt.",
-    "sich beschäftigen mit",
-    "Er beschäftigt sich mit dem Problem.",
-    "bestehen aus",
-    "Das Team besteht aus fünf Mitgliedern.",
-    "sich bewerben um",
-    "Ich bewerbe mich um den Job.",
-    "diskutieren mit",
-    "Ich diskutiere mit meinem Freund.",
-    "einladen zu",
-    "Ich lade dich zu meiner Party ein.",
-    "erzählen von",
-    "Er erzählt von seiner Reise.",
-    "fragen nach",
-    "Ich frage nach dem Weg.",
-    "gehören zu",
-    "Er gehört zu unserer Gruppe.",
-    "gratulieren zu",
-    "Ich gratuliere dir zum Geburtstag.",
-    "sprechen mit",
-    "Ich spreche mit meinem Chef.",
-    "sprechen von",
-    "Er spricht von seinem Traum.",
-    "reden mit",
-    "Ich rede mit meiner Schwester.",
-    "reden von",
-    "Sie reden von ihren Plänen.",
-    "teilnehmen an",
-    "Ich nehme an dem Wettbewerb teil.",
-    "telefonieren mit",
-    "Ich telefoniere mit meiner Mutter.",
-    "träumen von",
-    "Ich träume von einem Urlaub.",
-    "sich treffen mit",
-    "Ich treffe mich mit meinen Freunden.",
-    "sich trennen von",
-    "Er hat sich von ihr getrennt.",
-    "sich unterhalten mit",
-    "Ich unterhalte mich mit meinem Nachbarn.",
-    "sich gewöhnen an",
-    "Ich gewöhne mich an das neue Haus.",
-    "sich verabreden mit",
-    "Ich habe mich mit ihr verabredet."
-];
-
+        const phrases = [
+            "achten auf",
+            "Ich achte auf meine Gesundheit.",
+            "sich anmelden für",
+            "Ich habe mich für den Kurs angemeldet.",
+            "bitten um",
+            "Er bittet um Hilfe.",
+            "antworten auf",
+            "Ich antworte auf die Frage.",
+            "aufpassen auf",
+            "Sie passt auf die Kinder auf.",
+            "sich ärgern über",
+            "Er ärgert sich über den Lärm.",
+            "sich beschweren über",
+            "Sie beschwert sich über das Essen.",
+            "sich bewerben um",
+            "Er bewirbt sich um die Stelle.",
+            "denken an",
+            "Ich denke an dich.",
+            "diskutieren über",
+            "Wir diskutieren über das Problem.",
+            "sprechen über",
+            "Wir sprechen über das Wetter.",
+            "sich engagieren für",
+            "Sie engagiert sich für den Umweltschutz.",
+            "sich entscheiden für",
+            "Er hat sich für das Studium entschieden.",
+            "sich entschuldigen für",
+            "Ich entschuldige mich für mein Verhalten.",
+            "sich erinnern an",
+            "Ich erinnere mich an den Urlaub.",
+            "sich freuen auf",
+            "Ich freue mich auf das Wochenende.",
+            "sich freuen über",
+            "Ich freue mich über das Geschenk.",
+            "sich interessieren für",
+            "Ich interessiere mich für Kunst.",
+            "sich kümmern um",
+            "Er kümmert sich um seinen Hund.",
+            "nachdenken über",
+            "Ich denke über das Problem nach.",
+            "reden über",
+            "Wir reden über den Film.",
+            "sprechen über",
+            "Wir sprechen über die Arbeit.",
+            "sich streiten über",
+            "Wir streiten uns über Politik.",
+            "sich informieren über",
+            "Ich informiere mich über die Nachrichten.",
+            "lachen über",
+            "Sie lacht über den Witz.",
+            "sich unterhalten über",
+            "Wir unterhalten uns über das Buch.",
+            "sich verlassen auf",
+            "Ich verlasse mich auf dich.",
+            "sich verlieben in",
+            "Er hat sich in sie verliebt.",
+            "sich vorbereiten auf",
+            "Ich bereite mich auf die Prüfung vor.",
+            "warten auf",
+            "Ich warte auf den Bus.",
+            "ausgehen von",
+            "Ich gehe davon aus, dass er kommt.",
+            "sich beschäftigen mit",
+            "Er beschäftigt sich mit dem Problem.",
+            "bestehen aus",
+            "Das Team besteht aus fünf Mitgliedern.",
+            "sich bewerben um",
+            "Ich bewerbe mich um den Job.",
+            "diskutieren mit",
+            "Ich diskutiere mit meinem Freund.",
+            "einladen zu",
+            "Ich lade dich zu meiner Party ein.",
+            "erzählen von",
+            "Er erzählt von seiner Reise.",
+            "fragen nach",
+            "Ich frage nach dem Weg.",
+            "gehören zu",
+            "Er gehört zu unserer Gruppe.",
+            "gratulieren zu",
+            "Ich gratuliere dir zum Geburtstag.",
+            "sprechen mit",
+            "Ich spreche mit meinem Chef.",
+            "sprechen von",
+            "Er spricht von seinem Traum.",
+            "reden mit",
+            "Ich rede mit meiner Schwester.",
+            "reden von",
+            "Sie reden von ihren Plänen.",
+            "teilnehmen an",
+            "Ich nehme an dem Wettbewerb teil.",
+            "telefonieren mit",
+            "Ich telefoniere mit meiner Mutter.",
+            "träumen von",
+            "Ich träume von einem Urlaub.",
+            "sich treffen mit",
+            "Ich treffe mich mit meinen Freunden.",
+            "sich trennen von",
+            "Er hat sich von ihr getrennt.",
+            "sich unterhalten mit",
+            "Ich unterhalte mich mit meinem Nachbarn.",
+            "sich gewöhnen an",
+            "Ich gewöhne mich an das neue Haus.",
+            "sich verabreden mit",
+            "Ich habe mich mit ihr verabredet."
+        ];
 
         let index = 0;
         let speaking = false;
@@ -147,15 +155,22 @@ const phrases = [
         // Function to sequentially speak phrases with pauses
         function readPhrases() {
             speaking = true;
+            document.getElementById('statusRect').style.backgroundColor = 'green'; // Turn rectangle green
 
             function speakNext() {
                 if (index < phrases.length && speaking) {
                     // Speak the German phrase
                     speak(phrases[index], 'de-DE', function () {
                         // Wait for 2 seconds, then speak the next phrase
-                        setTimeout(speakNext, 2000);
+                        if (index % 2 === 0) {
+                            setTimeout(speakNext, 2000);
+                        } else {
+                            setTimeout(speakNext, 1000);
+                        }
                     });
                     index++;
+                } else {
+                    document.getElementById('statusRect').style.backgroundColor = 'red'; // Turn rectangle red when finished
                 }
             }
 
@@ -172,6 +187,7 @@ const phrases = [
         document.getElementById('stop').addEventListener('click', function() {
             speaking = false;
             speechSynthesis.cancel(); // Stop any ongoing speech
+            document.getElementById('statusRect').style.backgroundColor = 'red'; // Turn rectangle red when stopped
         });
     </script>
 </body>
