@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speech Synthesis with Pauses</title>
+    <style>
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <button id="start">Start Reading</button>
+    <button id="stop">Stop Reading</button>
+
+    <script>
+        // List of phrases in German and their translations in Arabic
+        const phrases = [
+            { german: "achten auf", arabic: "انتبه إلى" },
+            { german: "sich anmelden für", arabic: "التسجيل في" },
+            { german: "bitten um", arabic: "طلب" },
+            { german: "antworten auf", arabic: "الرد على" },
+            { german: "aufpassen auf", arabic: "اعتني بـ" },
+            { german: "sich ärgern über", arabic: "تغضب بسبب" },
+            { german: "sich beschweren über", arabic: "الشكوى من" },
+            { german: "sich bewerben um", arabic: "التقدم بطلب للحصول على" },
+            { german: "denken an", arabic: "التفكير في" },
+            { german: "diskutieren über", arabic: "مناقشة حول" },
+            { german: "sprechen über", arabic: "التحدث عن" },
+            { german: "sich engagieren für", arabic: "الانخراط في" },
+            { german: "sich entscheiden für", arabic: "اتخاذ قرار بشأن" },
+            { german: "sich entschuldigen für", arabic: "الاعتذار عن" },
+            { german: "sich erinnern an", arabic: "تذكر" },
+            { german: "sich freuen auf", arabic: "التطلع إلى" },
+            { german: "sich freuen über", arabic: "السعادة بـ" },
+            { german: "sich interessieren für", arabic: "الاهتمام بـ" },
+            { german: "sich kümmern um", arabic: "العناية بـ" },
+            { german: "nachdenken über", arabic: "التفكير حول" },
+            { german: "reden über", arabic: "التحدث عن" },
+            { german: "sprechen über", arabic: "التحدث عن" },
+            { german: "sich streiten über", arabic: "الجدال حول" },
+            { german: "sich informieren über", arabic: "الحصول على معلومات حول" },
+            { german: "lachen über", arabic: "الضحك على" },
+            { german: "sich unterhalten über", arabic: "الحديث عن" },
+            { german: "sich verlassen auf", arabic: "الاعتماد على" },
+            { german: "sich verlieben in", arabic: "الوقوع في الحب مع" },
+            { german: "sich vorbereiten auf", arabic: "الاستعداد لـ" },
+            { german: "warten auf", arabic: "الانتظار لـ" },
+            { german: "ausgehen von", arabic: "الانطلاق من" },
+            { german: "sich beschäftigen mit", arabic: "التعامل مع" },
+            { german: "bestehen aus", arabic: "يتكون من" },
+            { german: "sich bewerben um", arabic: "التقدم بطلب للحصول على" },
+            { german: "diskutieren mit", arabic: "مناقشة مع" },
+            { german: "einladen zu", arabic: "دعوة لـ" },
+            { german: "erzählen von", arabic: "التحدث عن" },
+            { german: "fragen nach", arabic: "الاستفسار عن" },
+            { german: "gehören zu", arabic: "الانتماء إلى" },
+            { german: "gratulieren zu", arabic: "التهنئة بـ" },
+            { german: "sprechen mit", arabic: "التحدث مع" },
+            { german: "sprechen von", arabic: "التحدث عن" },
+            { german: "reden mit", arabic: "التحدث مع" },
+            { german: "reden von", arabic: "التحدث عن" },
+            { german: "teilnehmen an", arabic: "المشاركة في" },
+            { german: "telefonieren mit", arabic: "الاتصال بـ" },
+            { german: "träumen von", arabic: "الحلم بـ" },
+            { german: "sich treffen mit", arabic: "الاجتماع مع" },
+            { german: "sich trennen von", arabic: "الانفصال عن" },
+            { german: "sich unterhalten mit", arabic: "الدردشة مع" },
+            { german: "sich gewöhnen an", arabic: "التعود على" },
+            { german: "sich verabreden mit", arabic: "ترتيب لقاء مع" }
+        ];
+
+        let index = 0;
+        let speaking = false;
+
+        // Function to speak a text with a specific language
+        function speak(text, lang, callback) {
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = lang;
+            speechSynthesis.speak(utterance);
+            utterance.onend = callback;
+            utterance.onerror = callback;
+        }
+
+        // Function to sequentially speak phrases with pauses
+        function readPhrases() {
+            speaking = true;
+
+            function speakNext() {
+                if (index < phrases.length && speaking) {
+                    // Speak the German phrase
+                    speak(phrases[index].german, 'de-DE', function () {
+                        // Wait for 1 second
+                        setTimeout(() => {
+                            // Speak the Arabic translation
+                            speak(phrases[index].arabic, 'ar-SA', function () {
+                                // Wait for 1 second, then speak the next phrase
+                                setTimeout(speakNext, 1000);
+                            });
+                        }, 1000);
+                    });
+                    index++;
+                }
+            }
+
+            speakNext();
+        }
+
+        // Start reading when the start button is clicked
+        document.getElementById('start').addEventListener('click', function() {
+            index = 0; // Reset index
+            readPhrases();
+        });
+
+        // Stop reading when the stop button is clicked
+        document.getElementById('stop').addEventListener('click', function() {
+            speaking = false;
+            speechSynthesis.cancel(); // Stop any ongoing speech
+        });
+    </script>
+</body>
+</html>
