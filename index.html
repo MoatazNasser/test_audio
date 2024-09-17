@@ -23,77 +23,122 @@
     <button id="stop">Stop Reading</button>
 
     <script>
-        // List of phrases in German and their translations in Arabic
-        const phrases = [
-            { german: "achten auf", arabic: "انتبه إلى" },
-            { german: "sich anmelden für", arabic: "التسجيل في" },
-            { german: "bitten um", arabic: "طلب" },
-            { german: "antworten auf", arabic: "الرد على" },
-            { german: "aufpassen auf", arabic: "اعتني بـ" },
-            { german: "sich ärgern über", arabic: "تغضب بسبب" },
-            { german: "sich beschweren über", arabic: "الشكوى من" },
-            { german: "sich bewerben um", arabic: "التقدم بطلب للحصول على" },
-            { german: "denken an", arabic: "التفكير في" },
-            { german: "diskutieren über", arabic: "مناقشة حول" },
-            { german: "sprechen über", arabic: "التحدث عن" },
-            { german: "sich engagieren für", arabic: "الانخراط في" },
-            { german: "sich entscheiden für", arabic: "اتخاذ قرار بشأن" },
-            { german: "sich entschuldigen für", arabic: "الاعتذار عن" },
-            { german: "sich erinnern an", arabic: "تذكر" },
-            { german: "sich freuen auf", arabic: "التطلع إلى" },
-            { german: "sich freuen über", arabic: "السعادة بـ" },
-            { german: "sich interessieren für", arabic: "الاهتمام بـ" },
-            { german: "sich kümmern um", arabic: "العناية بـ" },
-            { german: "nachdenken über", arabic: "التفكير حول" },
-            { german: "reden über", arabic: "التحدث عن" },
-            { german: "sprechen über", arabic: "التحدث عن" },
-            { german: "sich streiten über", arabic: "الجدال حول" },
-            { german: "sich informieren über", arabic: "الحصول على معلومات حول" },
-            { german: "lachen über", arabic: "الضحك على" },
-            { german: "sich unterhalten über", arabic: "الحديث عن" },
-            { german: "sich verlassen auf", arabic: "الاعتماد على" },
-            { german: "sich verlieben in", arabic: "الوقوع في الحب مع" },
-            { german: "sich vorbereiten auf", arabic: "الاستعداد لـ" },
-            { german: "warten auf", arabic: "الانتظار لـ" },
-            { german: "ausgehen von", arabic: "الانطلاق من" },
-            { german: "sich beschäftigen mit", arabic: "التعامل مع" },
-            { german: "bestehen aus", arabic: "يتكون من" },
-            { german: "sich bewerben um", arabic: "التقدم بطلب للحصول على" },
-            { german: "diskutieren mit", arabic: "مناقشة مع" },
-            { german: "einladen zu", arabic: "دعوة لـ" },
-            { german: "erzählen von", arabic: "التحدث عن" },
-            { german: "fragen nach", arabic: "الاستفسار عن" },
-            { german: "gehören zu", arabic: "الانتماء إلى" },
-            { german: "gratulieren zu", arabic: "التهنئة بـ" },
-            { german: "sprechen mit", arabic: "التحدث مع" },
-            { german: "sprechen von", arabic: "التحدث عن" },
-            { german: "reden mit", arabic: "التحدث مع" },
-            { german: "reden von", arabic: "التحدث عن" },
-            { german: "teilnehmen an", arabic: "المشاركة في" },
-            { german: "telefonieren mit", arabic: "الاتصال بـ" },
-            { german: "träumen von", arabic: "الحلم بـ" },
-            { german: "sich treffen mit", arabic: "الاجتماع مع" },
-            { german: "sich trennen von", arabic: "الانفصال عن" },
-            { german: "sich unterhalten mit", arabic: "الدردشة مع" },
-            { german: "sich gewöhnen an", arabic: "التعود على" },
-            { german: "sich verabreden mit", arabic: "ترتيب لقاء مع" }
-        ];
+        // List of German phrases and examples
+const phrases = [
+    "achten auf",
+    "Ich achte auf meine Gesundheit.",
+    "sich anmelden für",
+    "Ich habe mich für den Kurs angemeldet.",
+    "bitten um",
+    "Er bittet um Hilfe.",
+    "antworten auf",
+    "Ich antworte auf die Frage.",
+    "aufpassen auf",
+    "Sie passt auf die Kinder auf.",
+    "sich ärgern über",
+    "Er ärgert sich über den Lärm.",
+    "sich beschweren über",
+    "Sie beschwert sich über das Essen.",
+    "sich bewerben um",
+    "Er bewirbt sich um die Stelle.",
+    "denken an",
+    "Ich denke an dich.",
+    "diskutieren über",
+    "Wir diskutieren über das Problem.",
+    "sprechen über",
+    "Wir sprechen über das Wetter.",
+    "sich engagieren für",
+    "Sie engagiert sich für den Umweltschutz.",
+    "sich entscheiden für",
+    "Er hat sich für das Studium entschieden.",
+    "sich entschuldigen für",
+    "Ich entschuldige mich für mein Verhalten.",
+    "sich erinnern an",
+    "Ich erinnere mich an den Urlaub.",
+    "sich freuen auf",
+    "Ich freue mich auf das Wochenende.",
+    "sich freuen über",
+    "Ich freue mich über das Geschenk.",
+    "sich interessieren für",
+    "Ich interessiere mich für Kunst.",
+    "sich kümmern um",
+    "Er kümmert sich um seinen Hund.",
+    "nachdenken über",
+    "Ich denke über das Problem nach.",
+    "reden über",
+    "Wir reden über den Film.",
+    "sprechen über",
+    "Wir sprechen über die Arbeit.",
+    "sich streiten über",
+    "Wir streiten uns über Politik.",
+    "sich informieren über",
+    "Ich informiere mich über die Nachrichten.",
+    "lachen über",
+    "Sie lacht über den Witz.",
+    "sich unterhalten über",
+    "Wir unterhalten uns über das Buch.",
+    "sich verlassen auf",
+    "Ich verlasse mich auf dich.",
+    "sich verlieben in",
+    "Er hat sich in sie verliebt.",
+    "sich vorbereiten auf",
+    "Ich bereite mich auf die Prüfung vor.",
+    "warten auf",
+    "Ich warte auf den Bus.",
+    "ausgehen von",
+    "Ich gehe davon aus, dass er kommt.",
+    "sich beschäftigen mit",
+    "Er beschäftigt sich mit dem Problem.",
+    "bestehen aus",
+    "Das Team besteht aus fünf Mitgliedern.",
+    "sich bewerben um",
+    "Ich bewerbe mich um den Job.",
+    "diskutieren mit",
+    "Ich diskutiere mit meinem Freund.",
+    "einladen zu",
+    "Ich lade dich zu meiner Party ein.",
+    "erzählen von",
+    "Er erzählt von seiner Reise.",
+    "fragen nach",
+    "Ich frage nach dem Weg.",
+    "gehören zu",
+    "Er gehört zu unserer Gruppe.",
+    "gratulieren zu",
+    "Ich gratuliere dir zum Geburtstag.",
+    "sprechen mit",
+    "Ich spreche mit meinem Chef.",
+    "sprechen von",
+    "Er spricht von seinem Traum.",
+    "reden mit",
+    "Ich rede mit meiner Schwester.",
+    "reden von",
+    "Sie reden von ihren Plänen.",
+    "teilnehmen an",
+    "Ich nehme an dem Wettbewerb teil.",
+    "telefonieren mit",
+    "Ich telefoniere mit meiner Mutter.",
+    "träumen von",
+    "Ich träume von einem Urlaub.",
+    "sich treffen mit",
+    "Ich treffe mich mit meinen Freunden.",
+    "sich trennen von",
+    "Er hat sich von ihr getrennt.",
+    "sich unterhalten mit",
+    "Ich unterhalte mich mit meinem Nachbarn.",
+    "sich gewöhnen an",
+    "Ich gewöhne mich an das neue Haus.",
+    "sich verabreden mit",
+    "Ich habe mich mit ihr verabredet."
+];
+
 
         let index = 0;
         let speaking = false;
 
-        // Function to speak text in a specific language
+        // Function to speak a text with a specific language
         function speak(text, lang, callback) {
             const utterance = new SpeechSynthesisUtterance(text);
             utterance.lang = lang;
-
-            // Adjusting the rate for Android's speech synthesis
-            if (lang === 'ar-SA') {
-                utterance.rate = 0.9; // Slightly slower for Arabic
-            } else {
-                utterance.rate = 1.0; // Normal rate for German
-            }
-
             speechSynthesis.speak(utterance);
             utterance.onend = callback;
             utterance.onerror = callback;
@@ -106,15 +151,9 @@
             function speakNext() {
                 if (index < phrases.length && speaking) {
                     // Speak the German phrase
-                    speak(phrases[index].german, 'de-DE', function () {
-                        // Wait for 1 second
-                        setTimeout(() => {
-                            // Speak the Arabic translation
-                            speak(phrases[index].arabic, function () {
-                                // Wait for 1 second, then speak the next phrase
-                                setTimeout(speakNext, 1000);
-                            });
-                        }, 1000);
+                    speak(phrases[index], 'de-DE', function () {
+                        // Wait for 2 seconds, then speak the next phrase
+                        setTimeout(speakNext, 2000);
                     });
                     index++;
                 }
