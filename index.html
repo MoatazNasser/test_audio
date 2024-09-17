@@ -3,16 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Speech Synthesis with Pauses</title>
+    <title>Speech Synthesis with Pauses (Mobile Optimized)</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
         button {
             margin: 10px;
             padding: 10px 20px;
-            font-size: 16px;
+            font-size: 18px;
         }
     </style>
 </head>
 <body>
+    <h1>Listen to German-Arabic Phrases</h1>
     <button id="start">Start Reading</button>
     <button id="stop">Stop Reading</button>
 
@@ -76,10 +82,18 @@
         let index = 0;
         let speaking = false;
 
-        // Function to speak a text with a specific language
+        // Function to speak text in a specific language
         function speak(text, lang, callback) {
             const utterance = new SpeechSynthesisUtterance(text);
             utterance.lang = lang;
+
+            // Adjusting the rate for Android's speech synthesis
+            if (lang === 'ar-SA') {
+                utterance.rate = 0.9; // Slightly slower for Arabic
+            } else {
+                utterance.rate = 1.0; // Normal rate for German
+            }
+
             speechSynthesis.speak(utterance);
             utterance.onend = callback;
             utterance.onerror = callback;
@@ -96,7 +110,7 @@
                         // Wait for 1 second
                         setTimeout(() => {
                             // Speak the Arabic translation
-                            speak(phrases[index].arabic, 'Arabic', function () {
+                            speak(phrases[index].arabic, 'ar-SA', function () {
                                 // Wait for 1 second, then speak the next phrase
                                 setTimeout(speakNext, 1000);
                             });
