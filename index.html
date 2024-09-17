@@ -110,7 +110,7 @@
                         // Wait for 1 second
                         setTimeout(() => {
                             // Speak the Arabic translation
-                            speak(phrases[index].arabic, 'ar-SA', function () {
+                            speak(phrases[index].arabic, function () {
                                 // Wait for 1 second, then speak the next phrase
                                 setTimeout(speakNext, 1000);
                             });
